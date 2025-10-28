@@ -194,14 +194,14 @@ def main():
     avg_t_heavy = np.mean(heavy_times_d, axis=1)
 
     g_light = []
-    for row in times_d:
+    for L, row in zip(light_l_m, times_d):
         t = np.mean(row)
-        g_light.append(4 * (3.14**2) / (t**2))
+        g_light.append(4 * (3.14**2) * L / (t**2))
 
     g_heavy = []
-    for row in heavy_times_d:
+    for L, row in zip(heavy_l_m, heavy_times_d):
         t = np.mean(row)
-        g_heavy.append(4 * (3.14**2) / (t**2))
+        g_heavy.append(4 * (3.14**2) * L / (t**2))
 
     light_results_d = np.hstack(
         (
