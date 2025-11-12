@@ -45,7 +45,7 @@ def main():
     plt.legend()
     plt.title("Thin String")
     plt.grid()
-    # plt.show()
+    plt.show()
 
     # yarn
     L_string = 2  # m
@@ -79,13 +79,20 @@ def main():
         x,
         y,
         color="blue",
+        label="data",
     )
     slope, intercept = np.polyfit(x, y, 1)
-    plt.plot(x, slope * x + intercept, color="red")
+    plt.plot(
+        x,
+        slope * x + intercept,
+        color="red",
+        label=rf"best fit: T=($f^2$ := {slope:.2e})($\mu \lambda^2$)",
+    )
     plt.xlabel(r"$\mu \lambda^2$")
     plt.ylabel(r"T (N)")
+    plt.title("Yarn")
     plt.legend()
-    # plt.show()
+    plt.show()
 
 
 if __name__ == "__main__":
