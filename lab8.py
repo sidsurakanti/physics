@@ -45,7 +45,7 @@ def main():
     plt.legend()
     plt.title("Thin String")
     plt.grid()
-    plt.show()
+    # plt.show()
 
     # yarn
     L_string = 2  # m
@@ -56,10 +56,22 @@ def main():
     loop_length = np.array([0.235, 0.293, 0.382, 0.531])  # m
     hanging_mass = np.array([0.060, 0.095, 0.160, 0.32])  # kg
 
-    mew = L_string / m_string
+    mew = m_string / L_string
     wave_length = loop_length * 2
     T = hanging_mass * g
-    f = np.sqrt(T / mew * wave_length**2)
+    f = np.sqrt(T / (mew * (wave_length**2)))
+
+    yarn_df = pd.DataFrame(
+        {
+            "Loops": loops,
+            "Loop Length (m)": loop_length,
+            "Hanging Mass (kg)": hanging_mass,
+            "Wave Length (m)": wave_length,
+            "T (N)": T,
+            "f (hz)": f,
+        }
+    )
+    print(yarn_df, end="\n\n")
 
     plt.figure(figsize=(6, 4))
     x, y = mew * wave_length**2, T
